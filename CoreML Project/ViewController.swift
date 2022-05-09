@@ -6,14 +6,102 @@
 //
 
 import UIKit
+import CoreML
+import Vision
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var thirdLabel: UILabel!
+    @IBOutlet weak var firstProbLabel: UILabel!
+    @IBOutlet weak var secondProbLabel: UILabel!
+    @IBOutlet weak var thirdProbLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var labelsView: UIView!
+    let imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        labelsView.isHidden = true
+    }
+    
+    
+    
+    
+    @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
+        present(imagePicker, animated: true, completion: nil)
     }
 
-
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            imageView.image = pickedImage
+            
+            guard let ciimage = CIImage(image: pickedImage) else { fatalError() }
+            
+            detect(image: ciimage)
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func detect(image: CIImage) {
+        guard let model = try? VNCoreMLModel(for: MobileNetV2().model) else { fatalError("Some error ") }
+        
+        let request = VNCoreMLRequest(model: model) { request, error in
+            guard let result = request.results as? [VNClassificationObservation] else { fatalError("failed request") }
+            self.labelsView.isHidden = false
+            if let firstResuts = result.first {
+                self.firstLabel.text = firstResuts.identifier.components(separatedBy: ",").first
+                self.firstProbLabel.text = String(firstResuts.confidence)
+                print(firstResuts)
+            }
+             let secResuts = result[1]
+                self.secondLabel.text = secResuts.identifier.components(separatedBy: ",").first
+                self.secondProbLabel.text = String(secResuts.confidence)
+                print(secResuts.confidence)
+             let thrResuts = result[2]
+               self.thirdLabel.text = thrResuts.identifier.components(separatedBy: ",").first
+               self.thirdProbLabel.text = String(thrResuts.confidence)
+               print(thrResuts.confidence)
+           
+            
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: image)
+        
+        do {
+            try handler.perform([request])
+        } catch {
+            print("Some error \(error)")
+        }
+        
+    }
+    
+    
+    
+//    func sceneLabel(image: UIImage) -> String? {
+//        if let pixelBuffer = ImageProcessor.pixelBuffer(forImage: image.cgImage!) {
+//            guard let scene = try? model.prediction(sceneImage: pixelBuffer) else {fatalError("Unexpected runtime error")}
+//            return scene.sceneLabel
+//        }
+//        return nil
+//    }
+//
+//    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+//        let imageView = sender.view as? UIImageView
+//
+//        if let imageToAnalyse = imageView?.image {
+//            if let sceneLabelString = sceneLabel(image: imageToAnalyse) {
+//                categoryLabel.text = sceneLabelString
+//            }
+//        }
+//    }
+    
 }
 
