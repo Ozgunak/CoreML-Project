@@ -51,7 +51,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func detect(image: CIImage) {
-        guard let model = try? VNCoreMLModel(for: MobileNetV2().model) else { fatalError("Some error ") }
+        guard let model = try? VNCoreMLModel(for: SqueezeNet().model) else { fatalError("Some error ") }
         
         let request = VNCoreMLRequest(model: model) { request, error in
             guard let result = request.results as? [VNClassificationObservation] else { fatalError("failed request") }
@@ -61,15 +61,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.firstProbLabel.text = String(firstResuts.confidence)
                 print(firstResuts)
             }
-             let secResuts = result[1]
-                self.secondLabel.text = secResuts.identifier.components(separatedBy: ",").first
-                self.secondProbLabel.text = String(secResuts.confidence)
-                print(secResuts.confidence)
-             let thrResuts = result[2]
-               self.thirdLabel.text = thrResuts.identifier.components(separatedBy: ",").first
-               self.thirdProbLabel.text = String(thrResuts.confidence)
-               print(thrResuts.confidence)
-           
+            let secResuts = result[1]
+            self.secondLabel.text = secResuts.identifier.components(separatedBy: ",").first
+            self.secondProbLabel.text = String(secResuts.confidence)
+            print(secResuts.confidence)
+            let thrResuts = result[2]
+            self.thirdLabel.text = thrResuts.identifier.components(separatedBy: ",").first
+            self.thirdProbLabel.text = String(thrResuts.confidence)
+            print(thrResuts.confidence)
+            
             
         }
         
