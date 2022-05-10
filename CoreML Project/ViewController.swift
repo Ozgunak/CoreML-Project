@@ -59,15 +59,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if let firstResuts = result.first {
                 self.firstLabel.text = firstResuts.identifier.components(separatedBy: ",").first
                 self.firstProbLabel.text = String(firstResuts.confidence)
-                print(firstResuts)
+                print(firstResuts.identifier.components(separatedBy: ",").first!)
+                print(firstResuts.confidence)
             }
              let secResuts = result[1]
                 self.secondLabel.text = secResuts.identifier.components(separatedBy: ",").first
                 self.secondProbLabel.text = String(secResuts.confidence)
+            print(secResuts.identifier.components(separatedBy: ",").first!)
                 print(secResuts.confidence)
              let thrResuts = result[2]
                self.thirdLabel.text = thrResuts.identifier.components(separatedBy: ",").first
                self.thirdProbLabel.text = String(thrResuts.confidence)
+            print(thrResuts.identifier.components(separatedBy: ",").first!)
                print(thrResuts.confidence)
            
             
