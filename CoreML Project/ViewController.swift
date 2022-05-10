@@ -51,7 +51,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func detect(image: CIImage) {
-        guard let model = try? VNCoreMLModel(for: MobileNetV2().model) else { fatalError("Some error ") }
+        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { fatalError("Some error ") }
         
         let request = VNCoreMLRequest(model: model) { request, error in
             guard let result = request.results as? [VNClassificationObservation] else { fatalError("failed request") }
