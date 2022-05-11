@@ -32,9 +32,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         labelsView.isHidden = true
     }
     
-    
-    
-    
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
         present(imagePicker, animated: true, completion: nil)
     }
@@ -42,9 +39,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
             imageView.image = pickedImage
-            
             guard let ciimage = CIImage(image: pickedImage) else { fatalError() }
-            
             detect(image: ciimage)
         }
         imagePicker.dismiss(animated: true, completion: nil)
@@ -59,52 +54,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if let firstResuts = result.first {
                 self.firstLabel.text = firstResuts.identifier.components(separatedBy: ",").first
                 self.firstProbLabel.text = String(firstResuts.confidence)
-                print(firstResuts.identifier.components(separatedBy: ",").first!)
-                print(firstResuts.confidence)
             }
             let secResuts = result[1]
             self.secondLabel.text = secResuts.identifier.components(separatedBy: ",").first
             self.secondProbLabel.text = String(secResuts.confidence)
-            print(secResuts.identifier.components(separatedBy: ",").first!)
-            print(secResuts.confidence)
             let thrResuts = result[2]
             self.thirdLabel.text = thrResuts.identifier.components(separatedBy: ",").first
             self.thirdProbLabel.text = String(thrResuts.confidence)
-            print(thrResuts.identifier.components(separatedBy: ",").first!)
-            print(thrResuts.confidence)
-            
-            
         }
-        
         let handler = VNImageRequestHandler(ciImage: image)
-        
         do {
             try handler.perform([request])
         } catch {
             print("Some error \(error)")
         }
-        
     }
-    
-    
-    
-    //    func sceneLabel(image: UIImage) -> String? {
-    //        if let pixelBuffer = ImageProcessor.pixelBuffer(forImage: image.cgImage!) {
-    //            guard let scene = try? model.prediction(sceneImage: pixelBuffer) else {fatalError("Unexpected runtime error")}
-    //            return scene.sceneLabel
-    //        }
-    //        return nil
-    //    }
-    //
-    //    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
-    //        let imageView = sender.view as? UIImageView
-    //
-    //        if let imageToAnalyse = imageView?.image {
-    //            if let sceneLabelString = sceneLabel(image: imageToAnalyse) {
-    //                categoryLabel.text = sceneLabelString
-    //            }
-    //        }
-    //    }
-    
 }
 
