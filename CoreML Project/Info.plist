@@ -22,8 +22,8 @@
 		</dict>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>need to access</string>
+	<string>Uygulama Foto Kütüphanesine Ulaşmak İçin İzin İstiyor.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>access</string>
+	<string>Uygulama Kameraya Erişim İstiyor.</string>
 </dict>
 </plist>

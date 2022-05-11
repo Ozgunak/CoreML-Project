@@ -14,7 +14,6 @@
 		EFDFD0EA2827DDAA0077BA4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFDFD0E82827DDAA0077BA4A /* Main.storyboard */; };
 		EFDFD0EF2827DDAC0077BA4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFDFD0EE2827DDAC0077BA4A /* Assets.xcassets */; };
 		EFDFD0F22827DDAC0077BA4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFDFD0F02827DDAC0077BA4A /* LaunchScreen.storyboard */; };
-		EFDFD0FC2827E0880077BA4A /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDFD0FB2827E0880077BA4A /* ImageProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		EFDFD0EE2827DDAC0077BA4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFDFD0F12827DDAC0077BA4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFDFD0F32827DDAC0077BA4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EFDFD0FB2827E0880077BA4A /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				EFC21F35282ABA36009BDA91 /* Resnet50.mlkitmodel */,
-				EFDFD0FB2827E0880077BA4A /* ImageProcessor.swift */,
 				EFDFD0E22827DDAA0077BA4A /* AppDelegate.swift */,
 				EFDFD0E42827DDAA0077BA4A /* SceneDelegate.swift */,
 				EFDFD0E62827DDAA0077BA4A /* ViewController.swift */,
@@ -148,7 +145,6 @@
 				EFDFD0E32827DDAA0077BA4A /* AppDelegate.swift in Sources */,
 				EFDFD0E52827DDAA0077BA4A /* SceneDelegate.swift in Sources */,
 				EFC21F36282ABA36009BDA91 /* Resnet50.mlkitmodel in Sources */,
-				EFDFD0FC2827E0880077BA4A /* ImageProcessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
