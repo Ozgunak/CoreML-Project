@@ -83,28 +83,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } catch {
             print("Some error \(error)")
         }
-        
+
     }
-    
-    
-    
-//    func sceneLabel(image: UIImage) -> String? {
-//        if let pixelBuffer = ImageProcessor.pixelBuffer(forImage: image.cgImage!) {
-//            guard let scene = try? model.prediction(sceneImage: pixelBuffer) else {fatalError("Unexpected runtime error")}
-//            return scene.sceneLabel
-//        }
-//        return nil
-//    }
-//
-//    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
-//        let imageView = sender.view as? UIImageView
-//
-//        if let imageToAnalyse = imageView?.image {
-//            if let sceneLabelString = sceneLabel(image: imageToAnalyse) {
-//                categoryLabel.text = sceneLabelString
-//            }
-//        }
-//    }
-    
 }
 
