@@ -31,4 +31,4 @@ git@github.com:Ozgunak/CoreML-Project.git
 
 ## License
 
-GroceryShop is under MIT license.
+App is under MIT license.
